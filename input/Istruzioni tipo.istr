@@ -1,0 +1,13 @@
+#download
+
+d messenger // download messenger
+i messenger	// info messenger
+r 5			// aggiorna repo 5 volte
+u messenger	// aggiorna messenger
+p 1			// abilita push
+
+#upload
+
+r 234 0		// registrati password type
+a prova 1	// aggiungi prova 1
+u prova 2	// aggiorna prova 2

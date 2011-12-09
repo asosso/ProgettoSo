@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/msg.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+
+#define MSGKEY 4446454 //Codice coda messaggi
+#define MSGTIP 5552645 //Codice TIPO
+#define MAX_STR 25 //Numero massimo di caratteri per pacchetto
+#define MAX_PKG 50 //Numero massimo di pacchetti
+
+typedef struct {
+	char nome[MAX_STR]; //Nome del software
+	int ver; //Versione del software
+} pkg;
+
+typedef struct {
+	long tipo; //Tipo di messaggio
+	int azione; //Azione del messaggio
+	int pwd; //codice di autenticazione
+	char pkg[MAX_STR]; //Nome del pacchetto
+	int pid; //Pid del processo
+	pkg mypack; //Il pacchetto
+} messaggio;
+
+typedef struct {
+	int n; //numero di pacchetti nel repository
+	pkg lista[MAX_PKG]; //Lista dei pacchetti
+} repo;

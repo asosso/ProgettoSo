@@ -1,0 +1,21 @@
+#include "library.h"
+
+#define MAX_CLI 100 //Numero massimo di clienti
+#define SHMKEY 3338723 //Codice area memoria condivisa
+#define SEMKEY 2225342 //Codice dei semafori
+#define MAX_SERVER 5 //Massimo numero di connessioni per il server
+#define PASSWORD 234 //Codice per autenticarsi come client up
+
+
+typedef struct {
+	int n; //numero di pacchetti nel repository
+	int lista[MAX_CLI]; //Lista dei pacchetti
+} auth;
+
+
+//struct sembuf cmd; //boh
+
+void start_server();
+
+repo * rep;
+auth * aut;

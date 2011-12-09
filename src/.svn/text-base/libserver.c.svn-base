@@ -1,0 +1,112 @@
+#include "libserver.h"
+
+//Crea un pacchetto e lo restituisce
+pkg mkpkg(char nome[], int v) {
+	pkg tmp;
+	tmp.ver = v;
+	strcpy(tmp.nome, nome); //Trasforma in una stringa
+	return tmp;
+}
+//Stampa le informazioni di un pacchetto
+void print_pkg(pkg p) {
+	printf("%s 	ver. %d\n", p.nome, p.ver);
+}
+
+int checkpwd(int pid, int pwd){
+	if(pwd==PASSWORD) return pid;
+	return 0;
+}
+
+//metodo che autentica un cliente di up e inser il suo pid del vett della struct cli_up_autent
+int checkauth(int pid, int pwd){
+	int ris = checkpwd(pid,pwd);
+	if(ris) {
+		aut->lista[aut->n++]=ris;
+		return 1;
+	}
+	printf("Autenticazione fallita!\n");
+	return 0;
+}
+
+//Stampa l'intero repository
+void print_rep() {
+	int i = 0;
+	for (;i < rep->n; i++)
+		print_pkg(rep->lista[i]);
+}
+//Aggiunge un pacchetto nel repository con la versione
+void addv(char nome[], int v) {
+	if(find(nome) != -1) printf("Pacchetto gia' esistente, volevi forse aggiornarlo?\n");
+	else
+	if(rep->n<MAX_PKG) rep->lista[rep->n++] = mkpkg(nome, v);
+	else printf("Pacchetto non inserito, superati i %d pacchetti massimi\n", MAX_PKG);
+}
+
+//Aggiunge un pacchetto nel repository senza versione
+void add(char nome[]) {
+	addv(nome, 1);
+}
+
+//Controlla se un pacchetto esiste
+//In caso negativo restituisce -1
+int find(char nome[]) {
+	int i = 0;
+	for(;i<rep->n;i++)
+		if(strcmp(nome, rep->lista[i].nome) == 0)
+			return i;
+	return -1;
+}
+
+pkg send_pkg(int i) {
+	return rep->lista[i];
+}
+
+//Esegue l'update sul pacchetto selezionato con un numero di versione specifico
+void updatev(char nome[], int v) {
+	int l = find(nome);
+	if(l == -1) printf("*** Il pacchetto '%s' da aggiornare non e' stato trovato! *** \nVolevi forse aggiungerlo?\n\n", nome);
+	else
+	if(v == -1) rep->lista[l].ver++; else
+	if(rep->lista[l].ver < v) rep->lista[l].ver = v;
+	else printf("Pacchetto '%s' non aggiornato! Numero di versione inferirore a quello presente sul server\nVersione file inviato: %d\nVersione server: %d\n\n", nome, v, rep->lista[l].ver);
+}
+
+//Esegue l'update sul pacchetto selezionato incrementando di 1 il numero di versione
+void update(char nome[]) {
+	updatev(nome, -1);
+}
+
+//Inserisce tutti i pacchetti dal file pkgs.txt
+void insert_byfile() {
+	//dichiarazione delle variabili
+	char s[MAX_STR];
+	int v;
+	FILE * fp;
+
+	//Apro il file dei pacchetti
+	if ((fp = fopen("pkgs.txt", "r")) == NULL) {
+		printf("Impossibile aprire il file.\n");
+		exit(1);
+	}
+
+	//Importo il file dei pacchetti
+	while(!feof(fp)) {
+			fscanf(fp, "%s %d", s, &v);
+			addv(s, v);
+	}
+
+	//Chiudo le connessioni con il file
+	fclose(fp);
+}
+
+
+//Fa partire il server
+void start_server() {
+	printf("Pacchetti inseriti all'avvio:\n\n");
+	insert_byfile();
+	print_rep();
+	printf("\n*** Modifico qualcosa *** \n\n");
+	updatev("messenger", 2);
+	update("messenger");
+	print_rep();
+}

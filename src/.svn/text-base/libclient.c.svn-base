@@ -1,0 +1,64 @@
+#include "libclient.h"
+
+pkg getpkg(int id) {
+	return rep->lista[id];
+}
+
+void add(pkg mypack) {
+	rep->lista[rep->n++] = mypack;
+}
+
+//Stampa le informazioni di un pacchetto
+void print_pkg(pkg p) {
+	printf("%s 	ver. %d\n", p.nome, p.ver);
+}
+
+//Stampa l'intero repository
+void print_rep() {
+	int i = 0;
+	for (;i < rep->n; i++)
+		print_pkg(rep->lista[i]);
+}
+
+void addall() {
+	int i = 0;
+	for (;i < rep->n; i++)
+		add(rep->lista[i]);
+}
+
+//Controlla se un pacchetto esiste
+//In caso negativo restituisce -1
+int find(char nome[]) {
+	int i = 0;
+	for(;i<rep->n;i++)
+		if(strcmp(nome, rep->lista[i].nome) == 0)
+			return i;
+	return -1;
+}
+
+getinfo(char nome[]) {
+	int i = find(nome);
+	if(i != -1)  print_pkg(rep->lista[i]);
+	else printf("Impossibile trovare il pacchetto %s\n", nome);
+}
+
+getinfoid(int id) {
+	print_pkg(rep->lista[id]);
+}
+
+int reqauth(int pwd) {
+	messaggio req;
+	printf("L:%d  - Q:%d\n", l,q);
+
+	//Invio richiesta al server
+	//req.tipo = TIPO;
+	req.pwd = pwd;
+	msgsnd(q, &req, l, 0);
+
+	//Rimango in attesa di un ID per scaricare il file dall'area di memoria condivisa
+	printf("In attesa di risposta\n");
+	msgrcv(q, &req, l, req.pid, 0);
+	printf("Azione: %d", req.azione);
+	if(req.azione == 10) return 1;
+	return 0;
+}
