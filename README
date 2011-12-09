@@ -7,7 +7,21 @@
  * Author: Andrea Marchetti
  * Matricola: 714467
  */
+
+Come installare il programma
+
+Creare le directory necessarie con 
+* make install
+
+Compilare il programma con
+* make
  
+Per eliminare i file di log e il codice compilato
+* make clean
+
+Per reinstallare il programma
+* make reinstall
+
 Progetto a.a. 2010-2011: realizzazione di un sistema per l'update del software
 
 Sistemi per l'installazione e l'aggiornamento del software sono ormai disponibili per tutti i principali
