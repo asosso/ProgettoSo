@@ -40,7 +40,7 @@
 
 /* Log Path */
 #define LOG_PATH "./log/server/server.log"
-#define SERVER_INITIAL_REPO "input/server.repo"
+#define SERVER_INITIAL_REPO "./input/server.repo"
 
 /* Struttura di autorizzazione per clienti di upload */
 typedef struct {
