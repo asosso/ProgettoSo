@@ -63,8 +63,6 @@ void get_date(char *buffer) {
 
 /*
  * Funzione utilizzata per creare stampare la data sul file di log passato come parametro.
- * Inoltre come parametro e' passato:
- * msg: il messaggio da scrivere sul log
  * Restituisce 0 nel caso di erronea creazione, 1 in caso di scrittura corretta.
  */
 int log_date(string log, char *buff, ...) {
