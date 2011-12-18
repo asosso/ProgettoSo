@@ -28,14 +28,14 @@
 
 /* Semafori */
 #define SEM_TOT 9 // Numero totale di semafori
-#define SEM_SERVER 0 // Semaforo per i 5 figli del server
+#define SEM_SERVER 0 // Semaforo per il numero di figli del server
 #define BUFFER_MUTEX 1 // Mutua esclusione per scrivere sul buffer
-#define LS_MUTEX 2 // Mutua esclusione per scrivere sul buffer
-#define LS_SCRIVI 3 // Semaforo degli scrittori
-#define AUTH_MUTEX 4 // Mutua esclusione per l'autorizzazione
-#define AUTH_SCRIVI 5 // Mutua esclusione per l'autorizzazione
-#define PUSH_MUTEX 6 // Mutua esclusione per i client push
-#define PUSH_SCRIVI 7 // Mutua esclusione per l'autorizzazione
+#define LS_MUTEX 2 // Mutua esclusione per leggere nel repository
+#define LS_SCRIVI 3 // Semaforo degli scrittori per modificare il repository
+#define AUTH_MUTEX 4 // Mutua esclusione per leggere i client autorizzati
+#define AUTH_SCRIVI 5 // Semaforo degli scrittori per modificare i client autorizzati
+#define PUSH_MUTEX 6 // Mutua esclusione per leggere i client push
+#define PUSH_SCRIVI 7 // emaforo degli scrittori per modificare i client push
 
 
 /* Log Path */
