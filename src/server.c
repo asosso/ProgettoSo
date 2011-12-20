@@ -511,7 +511,7 @@ int iscrivi_push(int pid) {
  * -2 nel caso viene raggiunto il massimo numero di client push
  */
 int registra_push() {
-	writebuf("(push)\t %d Richiesta di registrazione\n", req.pid);
+	writebuf("(push)\t\t %d Richiesta di registrazione\n", req.pid);
 
 	req.tipo = req.pid;
 	req.todo = iscrivi_push(req.pid);
