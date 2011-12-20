@@ -243,7 +243,7 @@ int setup() {
 	aut->n = 0;
 	pus->n = 0;
 
-	int po;
+	int po = 0;
 	for(; po < SEM_TOT; po++)
 		ls->n[po] = 0;
 
