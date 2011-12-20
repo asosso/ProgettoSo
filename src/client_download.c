@@ -350,9 +350,9 @@ int main(int argc, char *argv[]) {
 			daemonize();
 
 		// Salvo il repository attuale del server
-		char mypack[MAX_STR + 5];
+		char mypack[MAX_STR + 50];
 		int s = 0;
-		char pidlog[25];
+		char pidlog[150];
 		sprintf(pidlog, "%sdownload_%d.repo", LOG_CLIENT, getpid());
 		log_date(pidlog, "(shutdown) Salvataggio repository su file");
 		for (; s < rep.n; s++) {
