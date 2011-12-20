@@ -10,8 +10,7 @@
 
 #include "client.h"
 
-/* Funzione utilizzata per inserire all'interno del repository
- * tutti i pacchetti dal file ./txt/nome.txt
+/* Funzione utilizzata per leggere le istruzioni da un file
  * Restituisce 0 in caso di errore, 1 altrimenti.
  */
 int read_istr(int mode, string logp) {
